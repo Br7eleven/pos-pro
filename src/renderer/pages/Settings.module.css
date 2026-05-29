@@ -1,0 +1,13 @@
+.page { padding: var(--space-lg); overflow-y: auto; height: 100vh; }
+
+.title { font-size: var(--font-size-headline-lg); font-weight: var(--font-weight-bold); letter-spacing: var(--letter-spacing-headline); margin-bottom: var(--space-xl); }
+
+.section { background: var(--color-surface); border: var(--border); border-radius: var(--radius-lg); padding: var(--space-lg); margin-bottom: var(--space-lg); }
+
+.sectionTitle { font-size: var(--font-size-body-lg); font-weight: var(--font-weight-bold); margin-bottom: var(--space-lg); color: var(--color-primary); }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+
+.actions { margin-top: var(--space-lg); display: flex; justify-content: flex-end; }
+
+.saved { color: var(--color-primary); font-size: var(--font-size-body-sm); display: flex; align-items: center; gap: var(--space-xs); }

@@ -1,0 +1,99 @@
+:root {
+  /* ── Nav rail (always dark) ─────────────────────────── */
+  --color-rail-bg:              #1e2229;
+  --color-rail-icon:            #8a95a3;
+  --color-rail-icon-active:     #7dc34a;
+  --color-rail-active-pip:      #7dc34a;
+  --color-rail-text:            #7dc34a;
+
+  /* ── App canvas ─────────────────────────────────────── */
+  --color-background:           #f3f4f8;
+  --color-surface:              #ffffff;
+  --color-surface-high:         #f0f2f7;
+  --color-surface-highest:      #e8eaef;
+  --color-surface-lowest:       #ffffff;
+
+  /* ── Text ───────────────────────────────────────────── */
+  --color-on-surface:           #111827;
+  --color-on-surface-variant:   #4b5563;
+  --color-muted:                #9ca3af;
+
+  /* ── Primary — Medium Lime (CTAs, active states) ────── */
+  --color-primary:              #7dc34a;
+  --color-on-primary:           #1a2e0a;
+  --color-primary-dim:          #6aad3a;
+  --color-primary-subtle:       rgba(125, 195, 74, 0.12);
+  --color-primary-glow:         rgba(125, 195, 74, 0.20);
+
+  /* ── Secondary — Teal (info / stock) ────────────────── */
+  --color-secondary:            #0891b2;
+  --color-secondary-subtle:     rgba(8, 145, 178, 0.10);
+  --color-on-secondary:         #ffffff;
+
+  /* ── Tertiary — Amber (warnings) ────────────────────── */
+  --color-tertiary:             #d97706;
+  --color-tertiary-subtle:      rgba(217, 119, 6, 0.10);
+
+  /* ── Borders ────────────────────────────────────────── */
+  --color-outline:              #d1d5db;
+  --color-outline-variant:      #e5e7eb;
+
+  /* ── Semantic ───────────────────────────────────────── */
+  --color-error:                #dc2626;
+  --color-error-subtle:         rgba(220, 38, 38, 0.10);
+  --color-success:              #16a34a;
+  --color-success-subtle:       rgba(22, 163, 74, 0.10);
+  --color-warning:              #d97706;
+  --color-warning-subtle:       rgba(217, 119, 6, 0.10);
+
+  /* ── Typography ─────────────────────────────────────── */
+  --font-family:                'Space Grotesk', sans-serif;
+  --font-size-headline-lg:      32px;
+  --font-size-headline-md:      24px;
+  --font-size-body-lg:          18px;
+  --font-size-body-md:          16px;
+  --font-size-body-sm:          14px;
+  --font-size-price:            20px;
+  --font-size-pin:              36px;
+  --font-size-label:            12px;
+  --font-weight-regular:        400;
+  --font-weight-medium:         500;
+  --font-weight-semibold:       600;
+  --font-weight-bold:           700;
+  --letter-spacing-headline:    -0.02em;
+  --letter-spacing-label:        0.05em;
+
+  /* ── Layout structure ───────────────────────────────── */
+  --rail-width:                 64px;
+  --cart-width:                 380px;
+  --header-height:              56px;
+
+  /* ── Spacing (8px base) ─────────────────────────────── */
+  --space-xs:                   4px;
+  --space-sm:                   8px;
+  --space-md:                   16px;
+  --space-lg:                   24px;
+  --space-xl:                   32px;
+  --space-2xl:                  48px;
+
+  /* ── Border radius ──────────────────────────────────── */
+  --radius-sm:                  4px;
+  --radius-md:                  8px;
+  --radius-lg:                  12px;
+  --radius-xl:                  16px;
+  --radius-pill:                9999px;
+
+  /* ── Borders (shorthand) ────────────────────────────── */
+  --border:                     1px solid var(--color-outline-variant);
+  --border-strong:              1px solid var(--color-outline);
+  --border-primary:             1.5px solid var(--color-primary);
+  --border-error:               1.5px solid var(--color-error);
+
+  /* ── Shadows ────────────────────────────────────────── */
+  --shadow-sm:                  0 1px 3px rgba(17, 24, 39, 0.08), 0 1px 2px rgba(17, 24, 39, 0.04);
+  --shadow-md:                  0 4px 12px rgba(17, 24, 39, 0.10), 0 2px 4px rgba(17, 24, 39, 0.06);
+
+  /* ── Transitions ────────────────────────────────────── */
+  --transition-fast:            80ms ease;
+  --transition-base:            150ms ease;
+}

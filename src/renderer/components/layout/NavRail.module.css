@@ -1,0 +1,108 @@
+.rail {
+  width: var(--rail-width);
+  height: 100vh;
+  background: var(--color-rail-bg);
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-md) 0;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  background: var(--color-rail-text);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  color: #1a2e0a;
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.navItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  gap: 4px;
+  cursor: pointer;
+  color: var(--color-rail-icon);
+  transition: color var(--transition-base);
+  border: none;
+  background: none;
+}
+
+.navItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 24px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: transparent;
+  transition: background var(--transition-base);
+}
+
+.navItem:hover { color: #d1d5db; }
+
+.navItem.active { color: var(--color-rail-icon-active); }
+
+.navItem.active::before { background: var(--color-rail-active-pip); }
+
+.navLabel {
+  font-size: 9px;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  width: 100%;
+}
+
+.staffBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-rail-icon);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  transition: border-color var(--transition-base), color var(--transition-base);
+}
+
+.staffBtn:hover {
+  border-color: var(--color-rail-icon-active);
+  color: var(--color-rail-icon-active);
+}

@@ -1,0 +1,21 @@
+@import './tokens.css';
+@import './reset.css';
+
+/* Space Grotesk — bundled locally */
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('../assets/fonts/SpaceGrotesk-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tabular numerals for all price/number displays */
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Focus ring — keyboard nav */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}

@@ -1,0 +1,105 @@
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background);
+  gap: var(--space-xl);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+  background: var(--color-primary);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-primary);
+}
+
+.storeName {
+  font-size: var(--font-size-headline-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-surface);
+  letter-spacing: var(--letter-spacing-headline);
+}
+
+.sub {
+  font-size: var(--font-size-body-md);
+  color: var(--color-on-surface-variant);
+}
+
+.card {
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-xl);
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.dots {
+  display: flex;
+  gap: var(--space-sm);
+  height: 16px;
+  align-items: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-outline-variant);
+  transition: background var(--transition-fast);
+}
+
+.dot.filled { background: var(--color-primary); }
+
+.pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.key {
+  aspect-ratio: 1;
+  background: var(--color-surface-high);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-pin);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.key:hover { background: var(--color-surface-highest); border-color: var(--color-outline); }
+.key:active { background: var(--color-primary); color: var(--color-on-primary); border-color: var(--color-primary); }
+
+.key.span2 { grid-column: span 2; aspect-ratio: auto; padding: var(--space-md); }
+
+.error {
+  font-size: var(--font-size-body-sm);
+  color: var(--color-error);
+  text-align: center;
+}

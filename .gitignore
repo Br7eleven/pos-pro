@@ -1,0 +1,20 @@
+node_modules/
+dist/
+dist-electron/
+out/
+*.local
+.env
+.env.*
+*.db
+*.db-shm
+*.db-wal
+
+# Dev tooling / AI / docs — not needed to run the app
+.claude/
+.claude-flow/
+.swarm/
+docs/
+CLAUDE.md
+README.md
+ruvector.db
+--includeRecommended
