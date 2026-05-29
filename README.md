@@ -1,4 +1,4 @@
-<H1 align="center">POS Pro <H1>
+# POS Pro
 
 <div align="center">
 
@@ -10,17 +10,17 @@
 
 **The ultimate offline-first desktop Point-of-Sale solution for retail shops.**
 
-[Features](#features) • [Quick Start](#quick-start) • [Installation](#installation) • [Development](#development) • [Architecture](#architecture) • [Contributing](#contributing)
-
 </div>
+
+[Features](#features) • [Quick Start](#quick-start) • [Installation](#installation) • [Development](#development) • [Architecture](#architecture) • [Contributing](#contributing)
 
 ---
 
 ## 📋 Overview
 
-**POS Pro** is a modern, lightweight desktop Point-of-Sale (POS) application designed specifically for retail shops operating offline. Built with industry-standard technologies, POS Pro delivers fast, reliable transaction processing without requiring an internet connection.
+**POS Pro** is a modern, lightweight desktop Point-of-Sale (POS) application designed specifically for retail shops operating offline. Built with industry-standard technologies, POS Pro delivers fast,[...]
 
-All customer data, transactions, inventory, and sales history are stored securely on the local machine using SQLite, ensuring complete data privacy and instant access. Whether you're managing a small boutique or a growing retail operation, POS Pro scales with your business.
+All customer data, transactions, inventory, and sales history are stored securely on the local machine using SQLite, ensuring complete data privacy and instant access. Whether you're managing a small [...]
 
 ### Key Highlights
 
