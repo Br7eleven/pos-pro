@@ -12,6 +12,10 @@
 
 </div>
 <div align="center">
+
+
+
+   
 [Features](#features) • [Quick Start](#quick-start) • [Installation](#installation) • [Development](#development) • [Architecture](#architecture) • [Contributing](#contributing)
 
 ---
