@@ -1,4 +1,4 @@
-# POS Pro
+<div align="center"># POS Pro </div>
 
 <div align="center">
 
