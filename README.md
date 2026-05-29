@@ -1,4 +1,4 @@
-# POS Pro
+# <div align= "center">POS Pro</div>
 
 <div align="center">
 
@@ -11,10 +11,11 @@
 **The ultimate offline-first desktop Point-of-Sale solution for retail shops.**
 
 </div>
-
+<div align="center">
 [Features](#features) • [Quick Start](#quick-start) • [Installation](#installation) • [Development](#development) • [Architecture](#architecture) • [Contributing](#contributing)
 
 ---
+</div>
 
 ## 📋 Overview
 
