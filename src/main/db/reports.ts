@@ -6,10 +6,12 @@ export function getDailySummary(date: number): object {
   const dayEnd = dayStart + 86400
 
   const summary = db.prepare(`
-    SELECT COUNT(*) as tx_count, COALESCE(SUM(total),0) as revenue,
-           COALESCE(SUM(CASE WHEN type='return' THEN total ELSE 0 END),0) as returns
+    SELECT
+      COALESCE(SUM(CASE WHEN type='sale' THEN 1 ELSE 0 END),0) as tx_count,
+      COALESCE(SUM(CASE WHEN type='sale' THEN total ELSE 0 END),0) as revenue,
+      COALESCE(SUM(CASE WHEN type='return' THEN total ELSE 0 END),0) as returns
     FROM transactions
-    WHERE created_at >= ? AND created_at < ? AND status = 'completed' AND type = 'sale'
+    WHERE created_at >= ? AND created_at < ? AND status = 'completed'
   `).get(dayStart, dayEnd)
 
   const topProducts = db.prepare(`
@@ -27,11 +29,13 @@ export function getRangeSummary(from: number, to: number): object {
   const db = getDb()
 
   const summary = db.prepare(`
-    SELECT COUNT(*) as tx_count, COALESCE(SUM(total),0) as revenue,
-           COALESCE(SUM(CASE WHEN type='return' THEN total ELSE 0 END),0) as returns,
-           COALESCE(AVG(total),0) as avg_transaction
+    SELECT
+      COALESCE(SUM(CASE WHEN type='sale' THEN 1 ELSE 0 END),0) as tx_count,
+      COALESCE(SUM(CASE WHEN type='sale' THEN total ELSE 0 END),0) as revenue,
+      COALESCE(SUM(CASE WHEN type='return' THEN total ELSE 0 END),0) as returns,
+      COALESCE(AVG(CASE WHEN type='sale' THEN total END),0) as avg_transaction
     FROM transactions
-    WHERE created_at >= ? AND created_at <= ? AND status = 'completed' AND type = 'sale'
+    WHERE created_at >= ? AND created_at <= ? AND status = 'completed'
   `).get(from, to)
 
   const daily = db.prepare(`

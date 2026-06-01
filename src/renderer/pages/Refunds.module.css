@@ -1,0 +1,289 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--space-lg);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: var(--font-size-headline-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-surface);
+  letter-spacing: var(--letter-spacing-headline);
+  margin: 0;
+}
+
+.sub {
+  font-size: var(--font-size-body-sm);
+  color: var(--color-muted);
+  margin: 4px 0 0;
+}
+
+.successBanner {
+  background: var(--color-success-subtle);
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-lg);
+  margin-bottom: var(--space-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-success);
+  font-size: var(--font-size-body-sm);
+  flex-shrink: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-lg);
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Transaction list (left panel) ── */
+
+.txList {
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.searchWrap {
+  padding: var(--space-md);
+  border-bottom: var(--border);
+  flex-shrink: 0;
+}
+
+.txItems {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.empty {
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--color-muted);
+  font-size: var(--font-size-body-sm);
+}
+
+.txRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: var(--border);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.txRow:last-child {
+  border-bottom: none;
+}
+
+.txRow:hover {
+  background: var(--color-surface-high);
+}
+
+.txRowActive {
+  background: var(--color-primary-subtle);
+  border-left: 3px solid var(--color-primary);
+}
+
+.txRowLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.txId {
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-surface);
+}
+
+.txDate {
+  font-size: 11px;
+  color: var(--color-muted);
+}
+
+.txAmount {
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-on-surface);
+}
+
+/* ── Refund form (right panel) ── */
+
+.refundForm {
+  flex: 1;
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex: 1;
+  color: var(--color-muted);
+  font-size: var(--font-size-body-sm);
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.formHeader h2 {
+  font-size: var(--font-size-body-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.methodPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+}
+
+.itemsTable {
+  display: flex;
+  flex-direction: column;
+  border: var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.itemRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: var(--border);
+}
+
+.itemRow:last-child {
+  border-bottom: none;
+}
+
+.itemName {
+  flex: 1;
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-on-surface);
+}
+
+.itemOrigQty {
+  font-size: 12px;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.itemRefundQty {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.qtyBtn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-high);
+  color: var(--color-on-surface);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.qtyBtn:hover {
+  background: var(--color-surface-highest);
+  border-color: var(--color-primary);
+}
+
+.qtyNum {
+  width: 24px;
+  text-align: center;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-body-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.itemRefundAmt {
+  width: 80px;
+  text-align: right;
+  font-weight: var(--font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--font-size-body-sm);
+  color: var(--color-on-surface);
+}
+
+.refundTotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: var(--border-strong);
+  padding-top: var(--space-md);
+  margin-top: var(--space-md);
+  font-size: var(--font-size-body-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-surface);
+}
+
+.refundTotalAmt {
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.errorMsg {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-error);
+  font-size: var(--font-size-body-sm);
+  margin-top: var(--space-sm);
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}

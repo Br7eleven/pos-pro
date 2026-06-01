@@ -8,11 +8,15 @@ const api = {
     getByBarcode: (barcode: string) => ipcRenderer.invoke('db:products:getByBarcode', { barcode }),
     create: (input: object) => ipcRenderer.invoke('db:products:create', input),
     update: (id: number, input: object) => ipcRenderer.invoke('db:products:update', { id, ...input }),
-    adjustStock: (id: number, delta: number) => ipcRenderer.invoke('db:products:adjustStock', { id, delta })
+    adjustStock: (id: number, delta: number, reason: string, userId?: number, userName?: string) => ipcRenderer.invoke('db:products:adjustStock', { id, delta, reason, userId, userName }),
+    stockMovements: (productId?: number) => ipcRenderer.invoke('db:stock:movements', { productId })
   },
   categories: {
     list: () => ipcRenderer.invoke('db:categories:list'),
     create: (name: string, color: string) => ipcRenderer.invoke('db:categories:create', { name, color })
+  },
+  dialog: {
+    selectImage: () => ipcRenderer.invoke('dialog:selectImage')
   },
   transactions: {
     create: (input: object) => ipcRenderer.invoke('db:transactions:create', input),
@@ -46,6 +50,15 @@ const api = {
   print: {
     getPrinters: () => ipcRenderer.invoke('print:getPrinters'),
     receipt: (html: string, printerName?: string) => ipcRenderer.invoke('print:receipt', { html, printerName })
+  },
+  audit: {
+    list: (filters?: object) => ipcRenderer.invoke('audit:list', filters)
+  },
+  backup: {
+    create: () => ipcRenderer.invoke('backup:create'),
+    list: () => ipcRenderer.invoke('backup:list'),
+    selectFile: () => ipcRenderer.invoke('backup:selectFile'),
+    restore: (backupPath: string) => ipcRenderer.invoke('backup:restore', { backupPath })
   }
 }
 

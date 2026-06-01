@@ -23,6 +23,7 @@ export interface Category {
 export interface Product {
   id: number
   barcode: string | null
+  sku: string | null
   name: string
   description: string | null
   category_id: number | null
@@ -40,6 +41,7 @@ export interface Product {
 
 export interface ProductInput {
   barcode?: string
+  sku?: string
   name: string
   description?: string
   category_id?: number
@@ -98,6 +100,7 @@ export interface TransactionInput {
   type: 'sale' | 'return'
   staffId: number
   customerId?: number
+  originalTxId?: number
   items: { productId: number; quantity: number; unitPrice: number; discount?: number }[]
   paymentMethod: 'cash' | 'card' | 'mixed'
   amountTendered?: number

@@ -5,6 +5,7 @@ import { ProductCard } from '../components/pos/ProductCard'
 import { CartPanel } from '../components/pos/CartPanel'
 import { useAuthStore } from '../stores/auth.store'
 import { useSettingsStore } from '../stores/settings.store'
+import { useCartStore } from '../stores/cart.store'
 import type { Product, Category } from '../types'
 import styles from './Terminal.module.css'
 
@@ -14,6 +15,8 @@ export function Terminal() {
   const [search, setSearch] = useState('')
   const [activeCat, setActiveCat] = useState<number | undefined>()
   const searchRef = useRef<HTMLInputElement>(null)
+  const scanBufRef = useRef('')
+  const scanTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const session = useAuthStore(s => s.session)
   const storeName = useSettingsStore(s => s.settings.store_name)
 
@@ -28,7 +31,34 @@ export function Terminal() {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'F3') { e.preventDefault(); searchRef.current?.focus() }
+      if (e.key === 'F3') { e.preventDefault(); searchRef.current?.focus(); return }
+      // Barcode scanner: HID sends chars very fast then Enter
+      // Only capture when search input is NOT focused (scanner fires globally)
+      if (document.activeElement === searchRef.current) return
+      if (e.key === 'Enter') {
+        const code = scanBufRef.current.trim()
+        scanBufRef.current = ''
+        if (scanTimerRef.current) clearTimeout(scanTimerRef.current)
+        if (code.length >= 4) {
+          // Treat as barcode scan — search by barcode
+          api.products.getByBarcode(code).then(p => {
+            if (p) {
+              useCartStore.getState().addItem(p)
+            } else {
+              // fall back to name search
+              setSearch(code)
+              searchRef.current?.focus()
+            }
+          })
+        }
+        return
+      }
+      if (e.key.length === 1) {
+        scanBufRef.current += e.key
+        if (scanTimerRef.current) clearTimeout(scanTimerRef.current)
+        // If no Enter after 100ms, discard buffer (not a scanner)
+        scanTimerRef.current = setTimeout(() => { scanBufRef.current = '' }, 100)
+      }
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)

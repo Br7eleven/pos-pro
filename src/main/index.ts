@@ -1,5 +1,6 @@
-import { app, BrowserWindow, shell } from 'electron'
+import { app, BrowserWindow, shell, protocol, net } from 'electron'
 import { join } from 'path'
+import { pathToFileURL } from 'url'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { getDb, closeDb } from './db/connection'
 
@@ -10,6 +11,12 @@ import './ipc/customers'
 import './ipc/reports'
 import './ipc/settings'
 import './ipc/printing'
+import './ipc/audit'
+import './ipc/backup'
+
+protocol.registerSchemesAsPrivileged([
+  { scheme: 'product-image', privileges: { secure: true, supportFetchAPI: true } }
+])
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
@@ -47,6 +54,11 @@ function createWindow(): void {
 app.whenReady().then(() => {
   electronApp.setAppUserModelId('com.nurture.pos')
   optimizer.watchWindowShortcuts
+
+  protocol.handle('product-image', (request) => {
+    const filePath = decodeURIComponent(request.url.replace('product-image:///', '').replace('product-image://', ''))
+    return net.fetch(pathToFileURL(filePath).toString())
+  })
 
   getDb()
   createWindow()

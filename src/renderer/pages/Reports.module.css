@@ -1,0 +1,23 @@
+.page { padding: var(--space-lg); overflow-y: auto; height: 100vh; background: var(--color-background); }
+
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-xl); }
+.title { font-size: var(--font-size-headline-lg); font-weight: var(--font-weight-bold); letter-spacing: var(--letter-spacing-headline); }
+.rangePill { padding: 5px 14px; background: var(--color-surface); border: var(--border); border-radius: var(--radius-pill); font-size: var(--font-size-body-sm); font-weight: var(--font-weight-semibold); color: var(--color-on-surface-variant); }
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin-bottom: var(--space-xl); }
+
+.statCard { background: var(--color-surface); border: var(--border); border-radius: var(--radius-lg); padding: 20px; display: flex; align-items: flex-start; gap: var(--space-md); }
+.statIcon { width: 44px; height: 44px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.statLabel { font-size: var(--font-size-label); font-weight: var(--font-weight-bold); letter-spacing: var(--letter-spacing-label); text-transform: uppercase; color: var(--color-muted); margin-bottom: 4px; }
+.statValue { font-size: var(--font-size-headline-md); font-weight: var(--font-weight-bold); color: var(--color-on-surface); font-variant-numeric: tabular-nums; }
+
+.card { background: var(--color-surface); border: var(--border); border-radius: var(--radius-lg); padding: var(--space-lg); margin-bottom: var(--space-lg); }
+.cardTitle { font-size: var(--font-size-body-lg); font-weight: var(--font-weight-bold); margin-bottom: var(--space-md); }
+
+.table { width: 100%; border-collapse: collapse; }
+.th { text-align: left; padding: 8px 12px; font-size: var(--font-size-label); font-weight: var(--font-weight-bold); letter-spacing: var(--letter-spacing-label); text-transform: uppercase; color: var(--color-muted); border-bottom: var(--border); }
+.td { padding: 10px 12px; font-size: var(--font-size-body-sm); border-bottom: 1px solid var(--color-outline-variant); }
+.tdQty { font-variant-numeric: tabular-nums; }
+.tdRevenue { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--color-primary); }
+.tdName { font-weight: 500; }
+.empty { text-align: center; color: var(--color-muted); }

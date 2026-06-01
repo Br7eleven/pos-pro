@@ -27,10 +27,10 @@ export function Dashboard() {
   const net = (summary?.revenue ?? 0) - (summary?.returns ?? 0)
 
   const stats = [
-    { label: "Today's Sales", value: formatPrice(summary?.revenue ?? 0, symbol), icon: DollarSign, color: '#7dc34a', bg: 'rgba(125,195,74,0.12)' },
-    { label: 'Transactions', value: String(summary?.tx_count ?? 0), icon: ShoppingBag, color: '#0891b2', bg: 'rgba(8,145,178,0.12)' },
-    { label: 'Returns', value: formatPrice(summary?.returns ?? 0, symbol), icon: RotateCcw, color: '#dc2626', bg: 'rgba(220,38,38,0.12)' },
-    { label: 'Net Revenue', value: formatPrice(net, symbol), icon: TrendingUp, color: '#7c3aed', bg: 'rgba(124,58,237,0.12)' }
+    { label: "Today's Sales", value: formatPrice(summary?.revenue ?? 0, symbol), icon: DollarSign, color: 'var(--color-primary)', bg: 'var(--color-primary-subtle)' },
+    { label: 'Transactions', value: String(summary?.tx_count ?? 0), icon: ShoppingBag, color: 'var(--color-secondary)', bg: 'var(--color-secondary-subtle)' },
+    { label: 'Returns', value: formatPrice(summary?.returns ?? 0, symbol), icon: RotateCcw, color: 'var(--color-error)', bg: 'var(--color-error-subtle)' },
+    { label: 'Net Revenue', value: formatPrice(net, symbol), icon: TrendingUp, color: '#7c3aed', bg: 'rgba(124,58,237,0.10)' }
   ]
 
   return (
@@ -69,15 +69,28 @@ export function Dashboard() {
           <h2 className={styles.cardTitle}>Recent Transactions</h2>
           <table className={styles.txTable}>
             <thead>
-              <tr><th>#</th><th>Time</th><th>Method</th><th>Total</th></tr>
+              <tr><th>#</th><th>Time</th><th>Type</th><th>Method</th><th>Total</th></tr>
             </thead>
             <tbody>
               {recentTx.map(tx => (
                 <tr key={tx.id}>
                   <td>#{tx.id}</td>
                   <td>{formatDateTime(tx.created_at)}</td>
+                  <td>
+                    <span style={{
+                      fontSize: 11, fontWeight: 700, padding: '2px 7px', borderRadius: 9999,
+                      background: tx.type === 'sale' ? 'var(--color-primary-subtle)' : 'var(--color-error-subtle)',
+                      color: tx.type === 'sale' ? 'var(--color-primary)' : 'var(--color-error)',
+                      border: `1px solid ${tx.type === 'sale' ? 'var(--color-primary)' : 'var(--color-error)'}`,
+                      textTransform: 'uppercase'
+                    }}>
+                      {tx.type === 'return' ? 'REFUND' : tx.type}
+                    </span>
+                  </td>
                   <td style={{ textTransform: 'capitalize' }}>{tx.payment_method}</td>
-                  <td>{formatPrice(tx.total, symbol)}</td>
+                  <td style={{ color: tx.type === 'return' ? 'var(--color-error)' : undefined }}>
+                    {tx.type === 'return' ? '-' : ''}{formatPrice(tx.total, symbol)}
+                  </td>
                 </tr>
               ))}
               {recentTx.length === 0 && (

@@ -7,6 +7,7 @@ import { Dashboard } from './pages/Dashboard'
 import { Inventory } from './pages/Inventory'
 import { Customers } from './pages/Customers'
 import { Reports } from './pages/Reports'
+import { Refunds } from './pages/Refunds'
 import { Settings } from './pages/Settings'
 import { useAuthStore } from './stores/auth.store'
 import { useSettingsStore } from './stores/settings.store'
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="/inventory" element={<ProtectedRoute><Inventory /></ProtectedRoute>} />
           <Route path="/customers" element={<ProtectedRoute><Customers /></ProtectedRoute>} />
           <Route path="/reports" element={<ManagerRoute><Reports /></ManagerRoute>} />
+          <Route path="/refunds" element={<ManagerRoute><Refunds /></ManagerRoute>} />
           <Route path="/settings" element={<ManagerRoute><Settings /></ManagerRoute>} />
         </Route>
         <Route path="*" element={<Navigate to="/auth" replace />} />

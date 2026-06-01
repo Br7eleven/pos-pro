@@ -12,8 +12,8 @@ export function createTransaction(input: TransactionInput): TransactionWithItems
 
   const tx = db.transaction(() => {
     const txResult = db.prepare(`
-      INSERT INTO transactions (type, customer_id, staff_id, subtotal, discount, tax, total, payment_method, amount_tendered, change_given, notes)
-      VALUES (@type, @customer_id, @staff_id, @subtotal, @discount, @tax, @total, @payment_method, @amount_tendered, @change_given, @notes)
+      INSERT INTO transactions (type, customer_id, staff_id, subtotal, discount, tax, total, payment_method, amount_tendered, change_given, notes, original_tx_id)
+      VALUES (@type, @customer_id, @staff_id, @subtotal, @discount, @tax, @total, @payment_method, @amount_tendered, @change_given, @notes, @original_tx_id)
     `).run({
       type: input.type,
       customer_id: input.customerId ?? null,
@@ -22,7 +22,8 @@ export function createTransaction(input: TransactionInput): TransactionWithItems
       payment_method: input.paymentMethod,
       amount_tendered: input.amountTendered ?? null,
       change_given: input.amountTendered != null ? input.amountTendered - total : null,
-      notes: input.notes ?? null
+      notes: input.notes ?? null,
+      original_tx_id: (input as { originalTxId?: number }).originalTxId ?? null
     })
     const txId = txResult.lastInsertRowid as number
 

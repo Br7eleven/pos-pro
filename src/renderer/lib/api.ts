@@ -9,11 +9,15 @@ declare global {
         getByBarcode: (barcode: string) => Promise<Product | null>
         create: (input: ProductInput) => Promise<Product>
         update: (id: number, input: Partial<ProductInput>) => Promise<Product>
-        adjustStock: (id: number, delta: number) => Promise<Product>
+        adjustStock: (id: number, delta: number, reason: string, userId?: number, userName?: string) => Promise<Product>
+        stockMovements: (productId?: number) => Promise<{ id: number; product_id: number; product_name: string; delta: number; reason: string; user_id: number | null; user_name: string | null; before_qty: number; after_qty: number; created_at: number }[]>
       }
       categories: {
         list: () => Promise<Category[]>
         create: (name: string, color: string) => Promise<Category>
+      }
+      dialog: {
+        selectImage: () => Promise<string | null>
       }
       transactions: {
         create: (input: TransactionInput) => Promise<TransactionWithItems>
@@ -47,6 +51,15 @@ declare global {
       print: {
         getPrinters: () => Promise<{ name: string }[]>
         receipt: (html: string, printerName?: string) => Promise<void>
+      }
+      audit: {
+        list: (filters?: { from?: number; to?: number; action?: string; limit?: number }) => Promise<{ id: number; user_name: string | null; action: string; entity_type: string | null; entity_id: number | null; new_value: string | null; created_at: number }[]>
+      }
+      backup: {
+        create: () => Promise<{ path: string; timestamp: string }>
+        list: () => Promise<{ name: string; path: string; size: number; created: number }[]>
+        selectFile: () => Promise<string | null>
+        restore: (backupPath: string) => Promise<{ preBackupPath: string }>
       }
     }
   }

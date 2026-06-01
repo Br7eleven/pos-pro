@@ -33,7 +33,7 @@ export function ProductCard({ product }: Props) {
     >
       <div className={styles.imgWrap}>
         {product.image_path ? (
-          <img src={`file://${product.image_path}`} alt={product.name} className={styles.img} />
+          <img src={`product-image:///${product.image_path}`} alt={product.name} className={styles.img} />
         ) : (
           <Package className={styles.placeholder} />
         )}

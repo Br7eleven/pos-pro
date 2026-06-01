@@ -87,6 +87,7 @@
   --border:                     1px solid var(--color-outline-variant);
   --border-strong:              1px solid var(--color-outline);
   --border-primary:             1.5px solid var(--color-primary);
+  --border-active:              1.5px solid var(--color-primary);
   --border-error:               1.5px solid var(--color-error);
 
   /* ── Shadows ────────────────────────────────────────── */

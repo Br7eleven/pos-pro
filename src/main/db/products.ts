@@ -31,10 +31,22 @@ export function getProductByBarcode(barcode: string): Product | null {
 
 export function createProduct(input: ProductInput): Product {
   const db = getDb()
+  const data = {
+    barcode: input.barcode ?? null,
+    sku: input.sku ?? null,
+    name: input.name,
+    description: input.description ?? null,
+    category_id: input.category_id ?? null,
+    price: input.price,
+    cost_price: input.cost_price ?? 0,
+    stock_quantity: input.stock_quantity ?? 0,
+    low_stock_alert: input.low_stock_alert ?? 5,
+    image_path: input.image_path ?? null
+  }
   const result = db.prepare(`
-    INSERT INTO products (barcode, name, description, category_id, price, cost_price, stock_quantity, low_stock_alert, image_path)
-    VALUES (@barcode, @name, @description, @category_id, @price, @cost_price, @stock_quantity, @low_stock_alert, @image_path)
-  `).run(input)
+    INSERT INTO products (barcode, sku, name, description, category_id, price, cost_price, stock_quantity, low_stock_alert, image_path)
+    VALUES (@barcode, @sku, @name, @description, @category_id, @price, @cost_price, @stock_quantity, @low_stock_alert, @image_path)
+  `).run(data)
   return getProduct(result.lastInsertRowid as number)!
 }
 
@@ -45,10 +57,20 @@ export function updateProduct(id: number, input: Partial<ProductInput>): Product
   return getProduct(id)!
 }
 
-export function adjustStock(id: number, delta: number): Product {
+export function adjustStock(id: number, delta: number, reason: string, userId?: number, userName?: string): Product {
   const db = getDb()
+  const current = db.prepare('SELECT stock_quantity, name FROM products WHERE id = ?').get(id) as { stock_quantity: number; name: string }
   db.prepare('UPDATE products SET stock_quantity = stock_quantity + ?, updated_at = unixepoch() WHERE id = ?').run(delta, id)
+  db.prepare('INSERT INTO stock_movements (product_id, product_name, delta, reason, user_id, user_name, before_qty, after_qty) VALUES (?,?,?,?,?,?,?,?)').run(
+    id, current.name, delta, reason, userId ?? null, userName ?? null, current.stock_quantity, current.stock_quantity + delta
+  )
   return getProduct(id)!
+}
+
+export function listStockMovements(productId?: number, limit = 100) {
+  const db = getDb()
+  if (productId) return db.prepare('SELECT * FROM stock_movements WHERE product_id = ? ORDER BY created_at DESC LIMIT ?').all(productId, limit)
+  return db.prepare('SELECT * FROM stock_movements ORDER BY created_at DESC LIMIT ?').all(limit)
 }
 
 export function listCategories(): Category[] {

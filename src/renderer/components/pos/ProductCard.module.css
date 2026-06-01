@@ -1,7 +1,7 @@
 .card {
   background: var(--color-surface);
   border: var(--border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   cursor: pointer;
   transition: border-color var(--transition-base), box-shadow var(--transition-base);
@@ -9,7 +9,7 @@
   flex-direction: column;
   user-select: none;
 }
-.card:hover { border-color: var(--color-outline); box-shadow: var(--shadow-md); }
+.card:hover { border-color: var(--color-outline); box-shadow: 0 0 0 2px rgba(125,195,74,0.15), var(--shadow-md); }
 .card:active { transform: scale(0.98); }
 
 .imgWrap {
@@ -38,7 +38,7 @@
   font-size: 10px;
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.04em;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
 }
 
 .stockDot {

@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom'
-import { LayoutGrid, Monitor, Package, Users, BarChart2, Settings, LogOut } from 'lucide-react'
+import { LayoutGrid, Monitor, Package, Users, BarChart2, RotateCcw, Settings, LogOut } from 'lucide-react'
 import { useAuthStore } from '../../stores/auth.store'
 import styles from './NavRail.module.css'
 
@@ -9,6 +9,7 @@ const NAV = [
   { path: '/inventory', icon: Package, label: 'Stock' },
   { path: '/customers', icon: Users, label: 'Clients' },
   { path: '/reports', icon: BarChart2, label: 'Reports' },
+  { path: '/refunds', icon: RotateCcw, label: 'Refunds' },
   { path: '/settings', icon: Settings, label: 'Setup' }
 ]
 
@@ -17,7 +18,7 @@ export function NavRail() {
   const { pathname } = useLocation()
   const { session, clearSession } = useAuthStore()
 
-  const isManagerRoute = ['/reports', '/settings'].includes(pathname)
+  const isManagerRoute = ['/reports', '/refunds', '/settings'].includes(pathname)
   if (session?.role === 'cashier' && isManagerRoute) return null
 
   return (
@@ -27,6 +28,7 @@ export function NavRail() {
       <div className={styles.nav}>
         {NAV.map(({ path, icon: Icon, label }) => {
           if (path === '/reports' && session?.role === 'cashier') return null
+          if (path === '/refunds' && session?.role === 'cashier') return null
           if (path === '/settings' && session?.role === 'cashier') return null
           return (
             <button

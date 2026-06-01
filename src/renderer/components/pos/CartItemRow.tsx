@@ -16,7 +16,7 @@ export function CartItemRow({ item }: Props) {
     <div className={styles.row}>
       <div className={styles.thumb}>
         {item.product.image_path ? (
-          <img src={`file://${item.product.image_path}`} alt={item.product.name} className={styles.thumbImg} />
+          <img src={`product-image:///${item.product.image_path}`} alt={item.product.name} className={styles.thumbImg} />
         ) : (
           <Package size={18} className={styles.thumbIcon} />
         )}

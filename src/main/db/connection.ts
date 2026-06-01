@@ -25,7 +25,10 @@ function runMigrations(db: Database.Database): void {
   `)
 
   const migrations: { name: string; sql: string }[] = [
-    { name: '001_initial.sql', sql: MIGRATION_001 }
+    { name: '001_initial.sql', sql: MIGRATION_001 },
+    { name: '002_audit_log.sql', sql: MIGRATION_002 },
+    { name: '003_stock_movements.sql', sql: MIGRATION_003 },
+    { name: '004_sku.sql', sql: MIGRATION_004 }
   ]
 
   const ran = new Set<string>(
@@ -147,4 +150,43 @@ INSERT OR IGNORE INTO settings VALUES
 
 INSERT OR IGNORE INTO staff (id, name, pin_hash, role)
 VALUES (1, 'Manager', '$2a$10$0bMOCE3ji/wTxgzwsd/vmuufjRSSi/H.tgD61CrYOVqMaGcYs/ida', 'manager');
+`
+
+const MIGRATION_002 = `
+CREATE TABLE IF NOT EXISTS audit_log (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id     INTEGER,
+  user_name   TEXT,
+  action      TEXT    NOT NULL,
+  entity_type TEXT,
+  entity_id   INTEGER,
+  old_value   TEXT,
+  new_value   TEXT,
+  ip_note     TEXT,
+  created_at  INTEGER NOT NULL DEFAULT (unixepoch())
+);
+CREATE INDEX IF NOT EXISTS idx_audit_created ON audit_log(created_at);
+CREATE INDEX IF NOT EXISTS idx_audit_action  ON audit_log(action);
+`
+
+const MIGRATION_003 = `
+CREATE TABLE IF NOT EXISTS stock_movements (
+  id           INTEGER PRIMARY KEY AUTOINCREMENT,
+  product_id   INTEGER NOT NULL REFERENCES products(id),
+  product_name TEXT    NOT NULL,
+  delta        INTEGER NOT NULL,
+  reason       TEXT    NOT NULL,
+  user_id      INTEGER,
+  user_name    TEXT,
+  before_qty   INTEGER NOT NULL,
+  after_qty    INTEGER NOT NULL,
+  created_at   INTEGER NOT NULL DEFAULT (unixepoch())
+);
+CREATE INDEX IF NOT EXISTS idx_stock_mov_product ON stock_movements(product_id);
+CREATE INDEX IF NOT EXISTS idx_stock_mov_created ON stock_movements(created_at);
+`
+
+const MIGRATION_004 = `
+ALTER TABLE products ADD COLUMN sku TEXT;
+CREATE UNIQUE INDEX IF NOT EXISTS idx_products_sku ON products(sku) WHERE sku IS NOT NULL;
 `
